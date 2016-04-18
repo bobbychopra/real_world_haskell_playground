@@ -40,3 +40,14 @@ length_of_list::[t] -> Int
 length_of_list[] = 0
 length_of_list(x:xs) = 1 + length_of_list(xs)
 
+
+----
+-- 3. Write a function that computes the mean of a list, i.e. the sum of all
+-- elements in the list divided by its length. (You may need to use the
+-- fromIntegral function to convert the length of the list from an integer into
+-- a floating point number.)
+-- mean_of_list::(Fractional a, Foldable t ) => t a-> a
+mean_of_list [] = 0
+mean_of_list xs = sum_of_list / fromIntegral(list_length)
+                where list_length = length xs
+                      sum_of_list = sum xs
