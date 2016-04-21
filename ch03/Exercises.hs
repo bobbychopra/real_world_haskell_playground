@@ -81,11 +81,21 @@ ispalindrome (x:xs) = x == (head (reverse xs)) && ispalindrome rest
 sortlistoflists xxs = sortBy (\ x y -> compare (length x) (length y)) xxs
 
 
--- ----
--- -- 7. Define a function that joins a list of lists together using a separator value.
--- myintersperse::a -> [[a]] -> [a]
--- myintersperse a [] = []
--- myintersperse a ([]) = []
--- myintersperse a (xs:[]) = xs
--- myintersperse a (xs:ys:[]) = xs ++ a ++ ys 
--- myintersperse a (xs:ys:zs) = xs ++ a ++ ys ++ a ++ (myintersperse zs)
+----
+-- 7. Define a function that joins a list of lists together using a separator value.
+myintersperse::a -> [[a]] -> [a]
+myintersperse a ([]) = []
+myintersperse a (xs:[]) = xs
+myintersperse a (xs:ys:[]) = xs ++ [a] ++ ys 
+myintersperse a (xs:ys:zs) = xs ++ [a] ++ ys ++ [a] ++ (myintersperse a zs)
+-- testing
+-- myintersperse  ',' []
+-- ""
+-- myintersperse  ',' ["foo"]
+-- "foo"
+-- myintersperse  ',' ["foo", "bar"]
+-- "foo,bar"
+-- myintersperse  ',' ["foo", "bar", "baz"]
+-- "foo,bar,baz"
+-- myintersperse  ',' ["foo", "bar", "baz", "quz"]
+-- "foo,bar,baz,quz"
