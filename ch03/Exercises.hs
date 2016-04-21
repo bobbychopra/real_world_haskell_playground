@@ -1,4 +1,6 @@
 
+import Data.List
+
 ----
 -- 1. Write the converse of fromList for the List type: a function that takes a 
 --    List a and generates a [a]
@@ -51,3 +53,39 @@ mean_of_list [] = 0
 mean_of_list xs = sum_of_list / fromIntegral(list_length)
                 where list_length = length xs
                       sum_of_list = sum xs
+                      
+----
+-- 4. Turn a list into a palindrome, i.e. it should read the same both backwards
+--  and forwards. For example, given the list [1,2,3], your function should 
+-- return [1,2,3,3,2,1]
+palindrome [] = []
+palindrome xs = xs ++ reverse(xs)
+-- in case, we can't use reverse
+myreverse [] = []
+myreverse (x:xs) = myreverse(xs) ++ [x]
+
+
+----
+-- 5.Write a function that determines whether its input list is a palindrome.
+-- ispalindrome::[a] -> Bool 
+ispalindrome [] = True
+ispalindrome (x:[]) = True
+ispalindrome (x:xs) = x == (head (reverse xs)) && ispalindrome rest
+                    where rest = tail (reverse xs)
+                    
+
+----
+-- 6. Create a function that sorts a list of lists based on the length of 
+-- sublist. (You may want to look at the sortBy function from the Data.List 
+-- module.)
+sortlistoflists xxs = sortBy (\ x y -> compare (length x) (length y)) xxs
+
+
+-- ----
+-- -- 7. Define a function that joins a list of lists together using a separator value.
+-- myintersperse::a -> [[a]] -> [a]
+-- myintersperse a [] = []
+-- myintersperse a ([]) = []
+-- myintersperse a (xs:[]) = xs
+-- myintersperse a (xs:ys:[]) = xs ++ a ++ ys 
+-- myintersperse a (xs:ys:zs) = xs ++ a ++ ys ++ a ++ (myintersperse zs)
